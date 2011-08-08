@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+
+<validators>
+	<field name="name">
+		<field-validator type="requiredstring">
+			<message key="msgkey.error.field.required"/>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">1</param>
+			<param name="maxLength">255</param>
+			<message key="msgkey.error.field.length"/>
+		</field-validator>
+	</field>
+	<field name="price">
+		<field-validator type="required">
+			<message key="msgkey.error.field.required"/>
+		</field-validator>
+		<field-validator type="conversion">
+			<message key="msgkey.error.price.conversion"/>
+		</field-validator>
+		<field-validator type="double">
+			<param name="minExclusive">0.0</param>
+			<message key="msgkey.error.price.minExclusive"/>
+		</field-validator>
+	</field>
+	<field name="oldPrice">
+		<!-- TODO: Fix: Do not validate conversion on empty price. -->
+		<field-validator type="conversion">
+			<message key="msgkey.error.price.conversion"/>
+		</field-validator>
+		<field-validator type="double">
+			<param name="minExclusive">0.0</param>
+			<message key="msgkey.error.price.minExclusive"/>
+		</field-validator>
+	</field>
+	<field name="quantity">
+		<field-validator type="conversion">
+			<message key="msgkey.error.quantity.conversion"/>
+		</field-validator>
+	</field>
+</validators>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!-- =========================== Data sources. ============================= -->
+	
+	<!-- MySQL data source with connection pool from c3p0 -->
+	<bean id="dataSourcePooledMysql" abstract="true"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/struts2shop?characterEncoding=UTF-8"/>
+		<property name="user" value="root"/>
+		<property name="password" value=""/>
+		
+		<property name="minPoolSize" value="5"/>
+		<property name="maxPoolSize" value="100"/>
+		<property name="acquireIncrement" value="5"/>
+		<property name="acquireRetryAttempts" value="3"/>
+		<property name="maxIdleTime" value="300"/>
+		<property name="idleConnectionTestPeriod" value="3000"/>
+		<property name="maxStatements" value="50"/>
+	</bean>
+	
+	<!-- HSQL data source with connection pool from c3p0 -->
+	<bean id="dataSourcePooledHsqldb" abstract="true"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="org.hsqldb.jdbcDriver"/>
+		<property name="jdbcUrl" value="jdbc:hsqldb:hsql://localhost/"/>
+		<property name="user" value="sa"/>
+		<property name="password" value=""/>
+		
+		<property name="minPoolSize" value="5"/>
+		<property name="maxPoolSize" value="100"/>
+		<property name="acquireIncrement" value="5"/>
+		<property name="acquireRetryAttempts" value="3"/>
+		<property name="maxIdleTime" value="300"/>
+		<property name="idleConnectionTestPeriod" value="3000"/>
+		<property name="maxStatements" value="50"/>
+	</bean>
+
+	<!-- MySQL data source -->
+	<bean id="dataSourceMysql" abstract="true"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/struts2shop?characterEncoding=UTF-8"/>
+		<property name="username" value="root"/>
+		<property name="password" value=""/>
+	</bean>
+	
+	<!-- HSQL data source -->
+	<bean id="dataSourceHsqldb" abstract="true"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+		<property name="url" value="jdbc:hsqldb:hsql://localhost/"/>
+		<property name="username" value="sa"/>
+		<property name="password" value=""/>
+	</bean>
+
+	<bean id="dataSource" parent="dataSourcePooledMysql"/>
+	
+</beans>

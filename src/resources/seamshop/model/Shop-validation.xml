@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+
+<validators>
+	<field name="name">
+		<field-validator type="requiredstring">
+			<message key="msgkey.error.field.required"/>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">1</param>
+			<param name="maxLength">255</param>
+			<message key="msgkey.error.field.length"/>
+		</field-validator>
+	</field>
+	<field name="urlName">
+		<field-validator type="stringlength">
+			<param name="minLength">3</param>
+			<param name="maxLength">255</param>
+			<message key="msgkey.error.field.length"/>
+		</field-validator>
+	</field>
+	<field name="countryCode">
+		<field-validator type="requiredstring">
+			<message key="msgkey.error.field.required.dropdownListBox"/>
+		</field-validator>
+	</field>
+	<field name="currency">
+		<field-validator type="requiredstring">
+			<message key="msgkey.error.field.required.dropdownListBox"/>
+		</field-validator>
+	</field>
+</validators>

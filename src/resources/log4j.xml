@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!--
+The 6 logging levels used by Log are (in order):
+	FATAL (the most serious)
+	ERROR
+	WARN
+	INFO
+	DEBUG
+	TRACE (the least serious)
+-->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<!-- <errorHandler class="org.jboss.logging.util.OnlyOnceErrorHandler"/> -->
+		<param name="Target" value="System.out"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<!-- The default pattern: Date Priority [Category] Message\n -->
+			<!--<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} %-5p [%c{1}] %m%n"/>-->
+			
+			<!-- The default pattern: Date Priority [Category] (Thread) Message\n -->
+			<!--<param name="ConversionPattern" value="%d %-5p [%c] (%t) %m%n"/>-->
+			
+			<!-- The full pattern: Date MS Priority [Category] (Thread:NDC) Message\n -->
+			<!--<param name="ConversionPattern" value="%d %-5r %-5p [%c] (%t:%x) %m%n"/>-->
+			
+			<param name="ConversionPattern" value="%d{HH:mm:ss,SSS} %-5p [%c{1}] %m%n"/>
+		</layout>
+	</appender>
+
+<!-- =========================== This project ============================== -->
+	<category name="seamshop">
+		<priority value="DEBUG"/>
+	</category>
+
+<!-- =================== Struts 2 & WebWork & plugins ====================== -->
+	<!-- Based on [http://cwiki.apache.org/S2WIKI/troubleshooting-guide-migrating-from-struts-20x-to-21x.html] -->
+	<category name="com.opensymphony.xwork2.ObjectFactory">
+		<priority value="FATAL"/>
+	</category>
+	<category name="com.opensymphony.xwork2.ognl.OgnlValueStack">
+		<priority value="ERROR"/>
+	</category>
+	<category name="com.opensymphony.xwork2.util.finder.ClassFinder">
+		<priority value="FATAL"/>
+	</category>
+	<category name="org.apache.struts2.convention">
+		<priority value="WARN"/>
+	</category>
+	<category name="org.apache.struts2.util.TextProviderHelper">
+		<priority value="ERROR"/>
+	</category>
+
+<!-- ==================== Freemarker (very verbose) ======================== -->
+	<category name="freemarker">
+		<priority value="WARN"/>
+	</category>
+
+<!-- ============================= Spring ================================== -->
+	<category name="org.springframework">
+		<priority value="WARN"/>
+	</category>
+	
+<!-- ============================ Hibernate ================================ -->
+	<category name="org.hibernate">
+		<priority value="WARN"/>
+	</category>
+	<!--
+	<category name="org.hibernate.SQL">
+		<priority value="TRACE"/>
+	</category>
+		
+	<category name="org.hibernate.type">
+		<priority value="TRACE"/>
+	</category>
+		
+	<category name="org.hibernate.loader">
+		<priority value="TRACE"/>
+	</category>
+	<category name="org.hibernate.cache">
+		<priority value="TRACE"/>
+	</category>
+	-->
+	
+<!-- ============================== c3p0 =================================== -->
+	<category name="com.mchange">
+		<priority value="WARN"/>
+	</category>
+
+<!-- ======================== UrlRewriteFilter ============================= -->
+	<category name="org.tuckey.web.filters.urlrewrite">
+		<priority value="WARN"/>
+	</category>
+
+<!-- ======================== General settings ============================= -->
+	<!-- TODO: DEVELOPMENT: TRACE/DEBUG/WARN -->
+	<root>
+		<priority value="WARN"/>
+		<appender-ref ref="CONSOLE"/>
+	</root>
+	<!-- TODO: PRODUCTION: ERROR/FATAL -->
+	<!--
+	<root>
+		<priority value="ERROR"/>
+		<appender-ref ref="CONSOLE"/>
+	</root>
+	-->
+	
+</log4j:configuration>

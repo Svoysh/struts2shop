@@ -1,0 +1,47 @@
+## TODO: PRODUCTION: Define allowed and disallowed URLs for search engine crawlers.
+
+## See http://www.robotstxt.org/robotstxt.html for documentation on how to use 
+## the robots.txt file
+
+## To ban all spiders from the entire site uncomment the next two lines:
+#User-Agent: *
+#Disallow: /
+
+## Prevent indexing of pages with dyna parameters like:
+## http://emample.com/am-i-indexed?id=123&etc=abc
+## but allowing:
+## http://emample.com/am-i-indexed?
+User-agent: *
+Allow: /*?$
+Disallow: /*?
+
+## Access denied for "folders".
+User-agent: *
+Disallow: /struts/*
+Disallow: /admin/*
+Disallow: /member/*
+Disallow: /seller/*
+Disallow: /buyer/*
+Disallow: /ajax/*
+#Disallow: /iframe/*
+
+## Access denied for actions.
+User-agent: *
+Disallow: /register
+Disallow: /login
+Disallow: /logout
+
+## Disallow static resources like CSS, JavaScript, erc.
+#Disallow: /css/*
+#Disallow: /js/*
+
+## Disallow scaning of any images.
+#Disallow: *.bmp
+#Disallow: *.gif
+#Disallow: *.jpeg
+#Disallow: *.jpg
+#Disallow: *.png
+
+## To prevent huge bandwidth usage from image steelers.
+#User-agent: Googlebot-Image
+#Disallow: / 

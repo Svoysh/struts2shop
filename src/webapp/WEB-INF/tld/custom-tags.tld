@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+	<description>Custom tag library.</description>
+	<display-name>Custom tags</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>t</short-name>
+	<uri>/custom-tags</uri>
+	
+	<!-- 
+		NOTE: Use <rtexprvalue>true</rtexprvalue to allow <jsp:attribute/> 
+		to include custom tags or JSTL-EL. Example:
+			<jsp:attribute name="label"><s:property value="%{'Password'}"/></jsp:attribute>
+	-->
+	
+	<tag>
+		<description>Panel at the bottom of form to contain form controls.</description>
+		<name>formControlPanel</name>
+		<tag-class>seamshop.web.tag.FormControlPanelTag</tag-class>
+		<body-content>scriptless</body-content>
+		<dynamic-attributes>false</dynamic-attributes>
+	</tag>
+	
+	<tag>
+		<description>Contains group of form fields.</description>
+		<name>formControlPanel</name>
+		<tag-class>seamshop.web.tag.FormFieldGroupTag</tag-class>
+		<body-content>scriptless</body-content>
+		<dynamic-attributes>false</dynamic-attributes>
+	</tag>
+	
+	<tag>
+		<description>Field decorator for form inputs.</description>
+		<name>formField</name>
+		<tag-class>seamshop.web.tag.FormFieldTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<description>HTML ID of block that wraps this form field tag.</description>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Name of any field of current Struts 2 action.</description>
+			<name>fieldName</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>HTML ID to be used in both input and label tags.</description>
+			<name>inputId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Label for this field.</description>
+			<name>label</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>I18n key of message from ResourceBundle. Will override 'label' attribute if it will has value.</description>
+			<name>labelKey</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>'true' if this field is required else 'false'. Default is 'false'.</description>
+			<name>required</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<dynamic-attributes>false</dynamic-attributes>
+	</tag>
+
+</taglib>

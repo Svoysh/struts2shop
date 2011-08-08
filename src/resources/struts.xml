@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+
+	<!-- TODO: Move all constants to "struts.properties" file? (y) -->
+	
+	<!-- 
+		Reload all config files with every request. "true" is equivalent to other 
+		settings like:
+			struts.i18n.reload = true
+			struts.configuration.xml.reload = true
+		
+		See [http://cwiki.apache.org/WW/devmode.html]
+	-->
+	<!-- TODO: DEVELOPMENT -->
+	<!--
+	<constant name="struts.devMode" value="true"/>
+	-->
+	<!-- TODO: PRODUCTION -->
+	<!--
+	<constant name="struts.devMode" value="false"/>
+	<constant name="struts.i18n.reload" value="false"/>
+	<constant name="struts.configuration.xml.reload" value="false"/>
+	-->
+	<constant name="struts.devMode" value="false"/>
+	
+	<!-- Use Spring IoC as object factory for Struts Actions. -->
+	<constant name="struts.objectFactory" value="spring"/>
+	
+	<constant name="struts.custom.i18n.resources" value="messages"/>
+	
+	<!--
+		This can be used to set your default locale and encoding scheme
+	-->
+	<!--<constant name="struts.locale" value="en"/>-->
+	<!--<constant name="struts.i18n.encoding" value="UTF-8"/>-->
+	
+	<constant name="struts.ui.templateDir" value="template"/>
+	<constant name="struts.ui.theme" value="block"/>
+	
+	<constant name="struts.multipart.saveDir" value="c:/uploads/temp"/>
+	
+	<constant name="struts.convention.action.mapAllMatches" value="true"/>
+	<constant name="struts.convention.default.parent.package" value="app-default"/>
+	
+	<!-- Directory where templates are located (default "/WEB-INF/content/"). -->
+	<constant name="struts.convention.result.path" value="/WEB-INF/jsp/"/>
+	
+	<!-- TODO: DEVELOPMENT -->
+	<!--<constant name="struts.convention.classes.reload" value="true"/>-->
+	
+	<package name="app-default" namespace="/" extends="convention-default">
+		<interceptors>
+			
+			<interceptor name="method" class="methodInterceptor"/>
+			<interceptor name="role" class="roleInterceptor"/>
+			<interceptor name="silentLogin" class="silentLoginInterceptor"/>
+			<interceptor name="requestContext" class="requestContextInterceptor"/>
+			<interceptor name="beforeValidation" class="beforeValidationInterceptor"/>
+			<interceptor name="transaction" class="transactionInterceptor"/>
+			<interceptor name="readTransaction" class="readTransactionInterceptor"/>
+			<interceptor name="writeTransaction" class="writeTransactionInterceptor"/>
+			
+			<interceptor-stack name="firstStack">
+				<!-- FIXME: Exception interceptor prevent transaction rollbacks. -->
+				<!-- 
+					TODO: Maybe delete at all? (y) Or place around (not inside) 
+					any "transaction" interceptor. 
+				-->
+				<interceptor-ref name="exception">
+					<param name="logEnabled">true</param>
+					<param name="logLevel">ERROR</param>
+				</interceptor-ref>
+				<interceptor-ref name="method"/>
+				<interceptor-ref name="silentLogin"/>
+				<interceptor-ref name="role"/>
+				<interceptor-ref name="requestContext"/>
+			</interceptor-stack>
+			
+			<!--
+				This stack is similar to the defaultStack, except that it
+				includes one extra interceptor before the prepare interceptor:
+				the params interceptor.
+
+				This is useful for when you wish to apply parameters directly
+				to an object that you wish to load externally (such as a DAO
+				or database or service layer), but can't load that object
+				until at least the ID parameter has been loaded. By loading
+				the parameters twice, you can retrieve the object in the
+				prepare() method, allowing the second params interceptor to
+				apply the values on the object.
+			-->
+			<interceptor-stack name="lastStack">
+				<interceptor-ref name="alias"/>
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="store">
+					<param name="operationMode">AUTOMATIC</param>
+				</interceptor-ref>
+				<interceptor-ref name="i18n">
+					<param name="parameterName">localeCode</param>
+				</interceptor-ref>
+				<interceptor-ref name="prepare"/>
+				<interceptor-ref name="chain"/>
+				<interceptor-ref name="debugging"/>
+				<interceptor-ref name="profiling"/>
+				<interceptor-ref name="scopedModelDriven"/>
+				<interceptor-ref name="modelDriven"/>
+				
+				<!-- TODO: Fix advanced-file-upload plugin w/ Struts 2.1.8. -->
+				<interceptor-ref name="fileUpload">
+					<!-- Maximum size in bytes. 2 Mb = 2097152 b. -->
+					<param name="maximumSize">2097152</param>
+					<!-- 
+						MIME (content type) passed by the browser. 
+						Only images currently (2009-06-30) allowed. 
+						See [http://www.mimetype.org/] 
+						See [http://www.iana.org/assignments/media-types/] 
+						
+						TODO: Better not to relay on browser MIME, determine MIME by 
+							"mime-utils.jar" using "eu.medsea.mimeutil.detector.MagicMimeMimeDetector".
+					-->
+					<!--
+					<param name="allowedTypes">image/bmp,image/x-windows-bmp,image/gif,image/jpeg,image/pjpeg,image/png,image/x-png</param>
+					-->
+					<!--
+						TODO: ".jpe, .jif, .jfif, .jfi" also are JPEGs. 
+						See [http://en.wikipedia.org/wiki/Jpeg] 
+					-->
+					<param name="allowedExtensions">bmp,gif,jpe,jpeg,jpg,png</param>
+				</interceptor-ref>
+				
+				<interceptor-ref name="checkbox"/>
+				<interceptor-ref name="staticParams"/>
+				<interceptor-ref name="actionMappingParams"/>
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError"/>
+				<interceptor-ref name="beforeValidation"/>
+				
+				<!-- TODO: Add more common exclude methods. -->
+				<interceptor-ref name="validation">
+					<param name="excludeMethods">input,back,cancel</param>
+				</interceptor-ref>
+				<interceptor-ref name="workflow">
+					<param name="excludeMethods">input,back,cancel</param>
+				</interceptor-ref>
+			</interceptor-stack>
+			
+			<!-- TODO: Maybe leave only one stack? such as now we have RoleInterceptor. -->
+			
+			<interceptor-stack name="memberStack">
+				<interceptor-ref name="firstStack"/>
+				<interceptor-ref name="transaction"/>
+				<!-- TODO: Remove: 
+				<interceptor-ref name="member"/>
+				-->
+				<interceptor-ref name="lastStack"/>
+			</interceptor-stack>
+			
+			<interceptor-stack name="guestStack">
+				<interceptor-ref name="firstStack"/>
+				<interceptor-ref name="transaction"/>
+				<interceptor-ref name="lastStack"/>
+			</interceptor-stack>
+			
+			<!-- TODO: Low: Create "ajaxStack" w/o silent login, etc. -->
+			
+			<!-- TODO: Low: Delete as unneeded? (y) -->
+			<!-- TODO: Low: Rename: "readStack" -->
+			<!--
+			<interceptor-stack name="readTransactionStack">
+				<interceptor-ref name="firstStack"/>
+				<interceptor-ref name="readTransaction"/>
+				<interceptor-ref name="lastStack"/>
+			</interceptor-stack>
+			-->
+			
+			<!-- TODO: Low: Delete as unneeded? (y) -->
+			<!-- TODO: Low: Rename: "writeStack" -->
+			<!--
+			<interceptor-stack name="writeTransactionStack">
+				<interceptor-ref name="firstStack"/>
+				<interceptor-ref name="writeTransaction"/>
+				<interceptor-ref name="lastStack"/>
+			</interceptor-stack>
+			-->
+			
+		</interceptors>
+		
+		<default-interceptor-ref name="guestStack"/>
+		
+		<!-- TODO: Replace by "Page Not Found". -->
+		<default-action-ref name="home"/>
+		<default-class-ref class="defaultAction"/>
+		
+		<!--
+			TODO: Global results do not work with Convention plugin. 
+			Annotate AbstractAction class by @ExceptionMappings and @Results 
+			after update to Struts 2.1.7.
+		-->
+		<global-results>
+			<!-- TODO: Include 'from' as param containing URL to return after success login. -->
+			<!-- 
+				TODO: Low: Move (login/logout/register) actions to "account" 
+					package and remove cart view from these actions.
+			-->
+			<result name="login" type="redirectAction">
+				<param name="actionName">login</param>
+				<param name="namespace">/</param>
+			</result>
+			
+			<!-- TODO: Bug: Action from member namespace does not redirect on "error" result. -->
+			<result name="error" type="redirectAction">
+				<param name="actionName">error</param>
+				<param name="namespace">/</param>
+			</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error"/>
+		</global-exception-mappings>
+	</package>
+
+	<package name="member-default" namespace="/member" extends="app-default">
+		<default-interceptor-ref name="memberStack"/>
+		<default-action-ref name="home"/>
+		<default-class-ref class="memberHomeAction"/>
+		
+		<!--
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception" result="error"/>
+		</global-exception-mappings>
+		-->
+	</package>
+</struts>

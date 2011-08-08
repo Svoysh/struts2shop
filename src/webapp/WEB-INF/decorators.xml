@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO: Production: Uncomment block. -->
+<!--
+<!DOCTYPE decorators PUBLIC 
+	"-//OpenSymphony//SiteMesh 1.5 Decorators//EN" 
+	"http://www.opensymphony.com/sitemesh/dtd/sitemesh_1_5_decorators.dtd">
+-->
+
+<decorators defaultdir="/decorators">
+
+	<!-- Any URLs that are excluded will never be decorated by SiteMesh. -->
+	<excludes>
+		<!-- Welcome pages w/ redirect. -->
+		<pattern>/index.jsp</pattern>
+		
+		<!-- Exclude static resources like CSS, JavaScript, Images. -->
+		<pattern>/css/*</pattern>
+		<pattern>/images/*</pattern>
+		<pattern>/js/*</pattern>
+		<pattern>/lib/*</pattern>
+		<pattern>/uploads/*</pattern>
+		
+		<!-- Exclude by extension. -->
+		<!--
+		<pattern>*.css</pattern>
+		<pattern>*.js</pattern>
+		<pattern>*.bmp</pattern>
+		<pattern>*.gif</pattern>
+		<pattern>*.jpg</pattern>
+		<pattern>*.png</pattern>
+		-->
+		
+		<!-- Exclude services used by AJAX. -->
+		<pattern>/ajax/*</pattern>
+		<pattern>/json/*</pattern>
+		
+		<!-- TODO: DEVELOPMENT: Remove "Config Browser" plugin in PRODUCTION. -->
+		<pattern>/config-browser/*</pattern>
+	</excludes>
+	
+	<decorator name="main" page="main.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	
+	<decorator name="member" page="member.jsp">
+		<pattern>/buyer/*</pattern>
+		<pattern>/member/*</pattern>
+		<pattern>/settings/*</pattern>
+		
+		<!-- TODO: Create checkout decorator or use buyer decorator. -->
+		<pattern>/checkout/*</pattern>
+		
+		<!-- TODO: DEVELOPMENT: Testing pages. -->
+		<pattern>/test</pattern>
+		<pattern>/test.action</pattern>
+	</decorator>
+	
+	<!-- 
+		TODO: Use CSS print instead? (try/test)
+		See [http://www.htmlbook.ru/content/?id=66]
+		See [http://www.google.com/search?q=css+print]
+	-->
+	<decorator name="printable" page="printable.jsp"/>
+
+</decorators>

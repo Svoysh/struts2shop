@@ -1,0 +1,65 @@
+/* 
+	Styles to customize Struts themes.
+	TODO: Move this styles into "resource/template/block/styles.css" file? (y)
+*/
+
+.wwgrp {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 1 solid hidden;
+	margin-bottom: 1px;
+	overflow: hidden;
+}
+.wwlbl {
+	color: #404040 /*#606060*/;
+	font-weight: bold;
+	padding: 0.5em;
+	text-align: right;
+	vertical-align: top;
+	width: 15em;
+}
+.wwctrl {
+	padding: 0.5em;
+	padding-left: 0;
+	text-align: left;
+	vertical-align: top;
+}
+.wwerr {
+	color: #dd0000;
+	margin-top: 0.5em;
+}
+
+.HasFieldErrors {
+	background-color: #ffcccc;
+	border: 1px solid #ff6666;
+}
+.errorLabel {
+	color: #404040;
+}
+.wwerr .errorMessage {
+	margin-top: 1px;
+}
+
+ul.actionMessage {
+	background-color: #ddffdd;
+	border: 1px solid #8AE28A;
+	color: #009900;
+	margin: 0;
+	padding: 0.5em;
+}
+ul.errorMessage {
+	background-color: #ffcccc;
+	border: 1px solid #ff6666;
+	color: #dd0000;
+	margin: 0;
+	padding: 0.5em;
+}
+ul.actionMessage, 
+ul.errorMessage {
+	margin-bottom: 0.5em;
+}
+span.actionMessage, 
+span.errorMessage {
+	display: block;
+	display: inline-block; /* IE6 block fix */
+}

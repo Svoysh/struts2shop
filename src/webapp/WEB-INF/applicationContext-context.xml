@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- Comment this if used <context:annotation-config/>. -->
+	<!--
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+    -->
+
+<!-- ============================ Webapp beans. ============================ -->
+
+
+<!-- ============= Context autodetection by annotations. =================== -->
+
+	<!--
+		Activates various annotations to be detected in bean classes: Spring's
+		@Required and @Autowired, as well as JSR 250's @PostConstruct,
+		@PreDestroy and @Resource (if available) and JPA's @PersistenceContext
+		and @PersistenceUnit (if available).
+	-->
+	<context:annotation-config/>
+
+
+<!-- ============================ Contexts. ============================ -->
+
+	<!-- TODO: Delete block? (y/n) -->
+	<!---->
+	<bean id="applicationContext" class="seamshop.context.ApplicationContext"/>
+	<bean id="sessionContext" scope="session" class="seamshop.context.SessionContext">
+		<aop:scoped-proxy/>
+	</bean>
+	<bean id="requestContext" scope="request" class="seamshop.context.RequestContext">
+		<aop:scoped-proxy/>
+	</bean>
+	<bean id="transactionContext" class="seamshop.context.TransactionContext"/>
+	
+	<!-- 
+		Auto-scan bean classes into defined packages (comma-separated) 
+		and register the corresponding beans.
+	-->
+	<context:component-scan base-package="seamshop.action,seamshop.dao,seamshop.interceptor,seamshop.messages,seamshop.service"/>
+	
+	<!-- TODO: Low: Maybe simplify to this variant? (y, test for speed) -->
+	<!--
+	<context:component-scan base-package="seamshop"/>
+	-->
+	
+</beans>

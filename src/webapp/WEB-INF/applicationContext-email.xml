@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!-- ============================ Email. ============================ -->
+
+	<bean id="freemarkerConfiguration" class="org.springframework.ui.freemarker.FreeMarkerConfigurationFactoryBean">
+		<property name="templateLoaderPath" value="/WEB-INF/mail/"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="freemarkerSettings">
+			<!-- TODO: PRODUCTION: Set cache setting, etc. -->
+			<value></value>
+		</property>
+	</bean>
+
+	<!-- See [http://static.springsource.org/spring/docs/2.5.x/reference/mail.html] -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="protocol" value="smtp"/>
+		<property name="host" value="localhost"/>
+		<property name="port" value="25"/>
+		<property name="defaultEncoding" value="UTF-8"/>
+		
+		<!-- TODO: DEVELOPMENT -->
+		<property name="username" value="struts2shop"/>
+		<property name="password" value="struts2shop"/>
+	</bean>
+
+	<!-- this is a template message that we can pre-load with default state -->
+	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+		<!-- TODO: DEVELOPMENT -->
+		<property name="from" value="noreply@localhost"/>
+		<property name="subject" value="Struts2Shop"/>
+	</bean>
+
+</beans>

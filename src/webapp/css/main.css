@@ -1,0 +1,983 @@
+/* 
+	TODO: Low: Choose measure unit for any margin and padding between "6px" or "0.5em". 
+		Better "px" because it allow to calculate compound paddings and margins.
+*/
+
+html, body {
+	background-color: white;
+	border: 0;
+	/*font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;*/
+	font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;
+	font-size: small;
+	margin: 0;
+	padding: 0;
+	
+	/* TODO: PRODUCTION: Uncomment next, but use "line-height" only for text content, not for links etc. */
+	/*line-height: 140%;*/	/* For readability. For best reading and eyes fixing. */
+}
+h1, h2, h3, h4, h5, h6 {
+	background-color: #eeeeee;
+	border: 0 solid hidden;
+	border-bottom: 1px solid #bbbbbb;
+	color: #444444;
+	font-weight: bold;
+	margin: 0;
+	margin-bottom: 6px;
+	padding: 6px;
+}
+h1 {
+	font-size: large; /* x-large */
+	margin-bottom: 0.5em;
+}
+h2 {
+	font-size: medium; /* large */
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+h3 {
+	font-size: small; /* medium */
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+h4 {
+	font-size: x-small; /* small */
+}
+h5 {
+	font-size: x-small;
+}
+h6 {
+	font-size: xx-small;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Fix for button font in FF. */
+input, button {
+	font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;
+	font-size: small;
+}
+a {
+	color: #4e7ac0;
+	margin: 0;
+	padding: 0;
+}
+a:hover {
+	background-color: #4e7ac0;
+	color: white;
+	text-decoration: none;
+}
+a img, :link img, :visited img {
+	border: 0 none;
+}
+img {
+	border: 0;
+}
+form, ul, li {
+	margin: 0;
+	padding: 0;
+}
+li {
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+}
+blockquote {
+	border-left: 2px solid #BBBBBB;
+	clear: both;
+	margin: 0.83em 0;
+	padding-left: 15px;
+}
+hr {
+	border: 1px solid #BBBBBB;
+}
+
+/*-----------------------------------------------------------------------------
+	If JavaScript disabled.
+*/
+.NoJavaScript {
+	background-color: #FFCCCC;
+	border: 1px solid #FF6666;
+	color: #DD0000;
+	display: block;
+	margin-bottom: 6px;
+	padding: 1em;
+}
+.NoJavaScript a {
+	color: black;
+	font-weight: bold;
+}
+.NoJavaScript a:hover {
+	background-color: black;
+	color: #FFCCCC;
+}
+
+/*-----------------------------------------------------------------------------
+	Etc.
+*/
+.HiddenTable, 
+.InlineHiddenTable {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border: 0 solid hidden;
+}
+.HiddenTable {
+	width: 100%;
+}
+.TopRow {
+	vertical-align: top;
+}
+.LeftCell {
+	text-align: left;
+}
+.RightCell {
+	text-align: right;
+}
+.InlineBlock {
+	display: inline;
+}
+.BoldFont {
+	font-weight: bold;
+}
+.CenteredText {
+	text-align: center;
+}
+h2.TableHeader {
+	border: 1px solid #bbbbbb;
+	margin: 0;
+}
+
+/*-----------------------------------------------------------------------------
+	header.jsp
+*/
+.PageBlock {
+	background-color: white;
+}
+
+.Header {
+	background-color: #4e7ac0;
+	border-bottom: 6px solid #B2D8FF;
+	clear: both;
+	color: #B2D8FF;
+	padding: 6px;
+	padding-bottom: 0;
+}
+
+.HeaderTable {
+	width: 100%;
+}
+.HeaderTable tr {
+	vertical-align: middle;
+}
+.HeaderTable td {
+}
+.HeaderTable a {
+	color: #ffffff;
+}
+.HeaderTable a:hover {
+	background-color: #ffffff;
+	color: #4e7ac0;
+	text-decoration: none;
+}
+
+.HomeLinkBlock {
+	text-align: left;
+}
+a.HomeLink {
+	background-color: #4e7ac0;
+	color: #B2D8FF /*#dce3ef*/;
+	font-size: x-large;
+	font-weight: bold;
+	text-decoration: none;
+}
+a.HomeLink:hover {
+	background-color: #4e7ac0;
+	color: #B2D8FF /*#dce3ef*/;
+	text-decoration: underline;
+}
+
+#actionBlock {
+	display: block;
+	margin-top: 12px;
+	text-align: right;
+}
+
+/*-----------------------------------------------------------------------------
+	BreadCrumbs
+*/
+.BreadCrumbs {
+	background-color: #CCE5FF;
+	border-bottom: 1px solid #B2D8FF;
+	color: #444444;
+	padding: 6px;
+}
+
+/*-----------------------------------------------------------------------------
+	Page content.
+*/
+#productId,
+#productVariantIds {
+	display: none;
+}
+
+.PageContent {
+	vertical-align: top;
+	width:100%;
+}
+#content {
+	padding: 6px;
+	vertical-align: top;
+}
+.RightContent {
+	padding: 6px;
+	padding-left: 0;
+	vertical-align: top;
+	width: 20%;
+}
+
+.ContentTable {
+	width: 100%;
+}
+.ContentTable td {
+	border: 0;
+	/*border: 1px solid #cccccc;*/
+}
+.LeftContentColumn {
+	vertical-align: top;
+	width: 20%;
+}
+.CenterContentColumn {
+	padding-left: 6px;
+	vertical-align: top;
+	width: 60%;
+}
+
+/*-----------------------------------------------------------------------------
+	footer.jsp
+*/
+.Footer {
+	background-color: #4e7ac0;
+	border-top: 6px solid #B2D8FF;
+	clear: both;
+	color: #B2D8FF;
+	padding: 12px;
+}
+.Footer a {
+	background-color: #4e7ac0;
+	color: white;
+	line-height: 100%;
+	margin: 0;
+	padding: 0;
+}
+.Footer a:hover {
+	background-color: white;
+	color: #4e7ac0;
+	text-decoration: none;
+}
+
+/*-----------------------------------------------------------------------------
+ * Pager
+ */
+.TopPager, 
+.BottomPager {
+	background-color: #f3f3f3;
+	border: 1px solid #e0e0e0 /*#e6e6e6 #ebebeb*/;
+	display: block;
+	padding: 6px;
+}
+.TopPager {
+	margin-bottom: 0.5em;
+}
+.BottomPager {
+	margin-top: 0.5em;
+}
+.PagerTable {
+	margin-bottom: 6px;
+	width: 100%;
+}
+.PagerPagesRow {
+	vertical-align: middle;
+}
+.PageCountCell {
+	padding-right: 6px;
+	text-align: left;
+}
+.PagerPagesCell {
+	text-align: center;
+}
+.PagerPagesList {
+	clear: both;
+	/*display: inline-block;*/
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+}
+.PageItem {
+	display: inline;
+	float: left;
+	margin-top: 1px;
+}
+.GoToPageCell {
+	padding-left: 6px;
+	text-align: right;
+}
+.PageLink,
+.CurrentPage {
+	display: block;
+	display: inline-block; /* IE6 block fix */
+	margin-left: 1px;
+	padding: 3px;
+	padding-left: 6px;
+	padding-right: 6px;
+}
+.CurrentPage {
+	background-color: #bbbbbb;
+	border: 1px solid #cccccc /*#cccccc #888888 */;
+	color: white;
+	font-weight: bold;
+}
+a.PageLink {
+	background-color: white;
+	border: 1px solid #cccccc /*#B2D8FF*/;
+	text-decoration: none;
+}
+a:hover.PageLink {
+	background-color: #5a98db /*#4e7ac0 #5a98db*/;
+	border: 1px solid #4e7ac0 /*#B2D8FF*/;
+	color: white;
+	text-decoration: none;
+}
+
+/*-----------------------------------------------------------------------------
+ * Search
+ */
+.SearchFormBlock {
+	text-align: right;
+}
+.SearchForm {
+}
+.SearchTextBox {
+	background-color: white;
+	border: 1px solid #4e7ac0;
+	font-size: small;
+	margin: 0;
+	padding: 2px;
+	width: 20em;
+}
+
+/*-----------------------------------------------------------------------------
+ * Tables
+ */
+table.ViewTable, 
+table.ListTable {
+	border: 1px solid #ddd;
+}
+table.ListTable {
+	width: 100%;
+}
+.ViewTable tr:hover, 
+.ListTable tr:hover {
+	background-color: #ffffbf;
+}
+.ViewTable th, 
+.ListTable th {
+	background-color: #eee;
+	border: 1px solid #ddd;
+	/*border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;*/
+	padding: 0.5em;
+}
+.ViewTable td, 
+.ListTable td {
+	border-left: 1px solid #eee;
+	border-right: 1px solid #eee;
+	/*border: 1px solid #ddd;*/
+	/*border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;*/
+	padding: 0.5em;
+	vertical-align: top;
+}
+
+.ViewTable th {
+	text-align: right;
+}
+.ViewTable td {
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	text-align: left;
+}
+
+tr.Odd {
+	background-color: #fff;
+}
+tr.Even {
+	background-color: #f8f8f8;
+}
+
+td.Id {
+	text-align: right;
+}
+td.Actions {
+	/*white-space: nowrap;*/
+}
+td.Number {
+	text-align: right;
+	white-space: nowrap;
+}
+td.Country {
+	white-space: nowrap;
+}
+td.Currency {
+	white-space: nowrap;
+}
+td.Date {
+	white-space: nowrap;
+}
+
+/*-----------------------------------------------------------------------------
+ * ProductList
+ */
+.ProductList {
+	border: 1px solid #bbbbbb;
+	border-top: 0;
+}
+.ProductTable {
+	width: 100%;
+}
+.ProductTable td {
+	border: 0 solid #cccccc /*#888888*/;
+	padding: 6px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	vertical-align: top;
+}
+.ProductTable td.LeftProductCell {
+	padding-left: 12px;
+	width: 1px;
+    overflow: visible;
+}
+.ProductTable td.RightProductCell {
+	padding-right: 12px;
+	text-align: right;
+}
+.ProductTableHeader {
+	background-color: #dddddd;
+	color: #797979 /*#777*/;
+	font-weight: bold;
+	text-align: center;
+}
+.FirstProductRow {
+	background-color: white;
+}
+.OddProductRow {
+	background-color: white;
+}
+.EvenProductRow {
+	background-color: #f7f7f7 /*#f0f0f0 #f5f5f5 #f7f7f7 #f9f9f9*/;
+}
+.OddProductRow td, 
+.EvenProductRow td {
+	border-top: 1px solid #e0e0e0 /*#ddd #eaeaea #cccccc*/;
+}
+
+.RowNumber {
+	color: #888888;
+}
+
+/*-----------------------------------------------------------------------------
+ * Product categories.
+ */
+.LeftPanel {
+	border: 1px solid #bbbbbb;
+	border-top: 0;
+}
+.LeftPanelCaption {
+	border-top: 1px solid #bbbbbb;
+	border-bottom: 1px solid #bbbbbb;
+	margin: 0;
+}
+.LeftPanelBody {
+	line-height: 100%;
+}
+.LeftPanelTable {
+	border: 0;
+}
+.CategoryTable {
+	width: 100%;
+}
+.CategoryTable td {
+	border-top: 1px solid #E0E0E0;
+	padding: 0.5em;
+	vertical-align: top;
+}
+.CategoryTable .First td {
+	border-top: 0;
+}
+.CategoryTable .ProductCount {
+	color: #888888;
+	text-align: right;
+}
+.CategoryTableOddRow {
+	background-color: #efefef /*#f7f7f7*/;
+}
+.CategoryTableEvenRow {
+	background-color: #f7f7f7;
+}
+
+/* Thumbnail. */
+/*----------------------------------------------------------------------------*/
+.ThumbnailCell {
+	text-align: right;
+	width: 1px;
+	overflow: visible;
+}
+.ThumbnailLink {
+	background-color: white;
+	border: 1px solid #cccccc /*#e6e6e6 #999999*/;
+	display: inline-block;
+	padding: 6px;
+	width: auto;
+}
+.ShopLogoBox {
+	padding: 6px;
+	text-align: center;
+}
+a:hover.ThumbnailLink {
+	background-color: #5a98db;
+	border: 1px solid #4e7ac0;
+}
+.LargeThumbFrame {
+	background-color: #ffffff;
+	border: 0 solid #ffffff;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+	width: 300px;
+	height: 300px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/*----------------------------------------------------------------------------*/
+.ProductNameBlock {
+}
+.ProductNameLink {
+	font-size: medium;
+	font-weight: bold;
+}
+.EntitySummaryBlock {
+	margin-top: 6px;
+}
+
+.Price {
+	color: black /* #339933 #006600 black*/;
+	/*font-size: medium;
+	font-weight: bold;*/
+	text-align: right;
+	white-space: nowrap;
+}
+.OldPrice {
+	color: black;
+	font-size: small;
+	text-align: right;
+	text-decoration: line-through;
+	white-space: nowrap;
+}
+
+.Menu {
+	margin-top: 6px;
+	width: 100%;
+}
+.Menu .CommonMenu {
+	text-align: left;
+}
+.Menu .AccountMenu {
+	text-align: right;
+}
+.CommonMenu li, 
+.AccountMenu li {
+	border-right: 1px solid #4e7ac0;
+	border-top: 1px solid #4e7ac0;
+}
+.CommonMenu li {
+	float: left;
+}
+.AccountMenu li {
+	float: right;
+}
+.MenuLink, 
+.SelectedMenuLink {
+	display: block;
+	display: inline-block; /* IE6 block fix */
+	font-size: small;
+	padding: 6px;
+	text-decoration: none;
+}
+.MenuLink {
+	background-color: #5a98db /*#5a98db #67a4e0*/;
+	color: white;
+}
+.MenuLink.Selected, 
+.SelectedMenuLink {
+	background-color: #B2D8FF;
+	color: #4e7ac0;
+	font-weight: bold;
+}
+.MenuLink:hover, 
+.SelectedMenuLink:hover {
+	background-color: #7cb3e9 /*#7cb3e9 #95c3f3*/;
+	color: white;
+	text-decoration: none;
+}
+
+.LogoutLink {
+	color: white;
+	display: block;
+	display: inline-block; /* IE6 block fix */
+	margin: 6px;
+}
+.LogoutLink:hover {
+	background-color: white;
+	color: #4e7ac0;
+}
+
+.CartMenuLink {
+	background-color: #6dc649; /* Color of caption of "Last added to cart" block. */
+}
+/*-----------------------------------------------------------------------------
+ * CartButton.
+ */
+.CartButton, 
+a.CheckoutButton {
+	background-color: #d0f589;
+	/*background-image: url("../images/button_add_to_cart.png");*/
+	background-position: bottom;
+	background-repeat: repeat-x;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #96cf53 #558e12 #558e12 #96cf53 /*#73bf19*/;
+	color: #405a0d;
+	cursor: pointer;
+	cursor: hand;
+	display: block;
+	display: inline-block; /* IE6 block fix */
+	font-size: small;
+	font-weight: bold;
+	margin-left: 1px;
+	margin-right: 1px;
+	padding: 3px;
+	padding-right: 6px;
+	padding-left: 6px;
+	text-decoration: none;
+    width: auto; /* fix for IE6 button expanded width */
+    overflow: visible; /* fix for IE6 button expanded width */
+}
+a.CheckoutButton {
+	background-color: #459924;
+	color: #d0f589;
+}
+.CartButton:hover {
+	background-color: #e4faba;
+	color: #506f14;
+}
+a.CheckoutButton:hover {
+	background-color: #459924;
+	text-decoration: underline;
+}
+.CartButton:active {
+	background-color: #d0f589;
+	border-color: #96cf53 #558e12 #558e12 #96cf53 /*#73bf19*/;
+}
+.CartButton[disabled], 
+.CartButton[disabled]:hover {
+	background-color: silver;
+}
+
+/*-----------------------------------------------------------------------------
+ * CartPerPage.
+ */
+.CartPerPage {
+	background-color: #A0E266;
+	border: 1px solid #459924;
+	padding: 6px;
+	text-align: center;
+}
+.CartPerPage .CartLink a {
+	color: #459924;
+	font-weight: bold;
+}
+.CartPerPage .CartLink a:hover {
+	background-color: #459924;
+	color: #E5FFB2;
+	text-decoration: none;
+}
+.CartPerPage .Top {
+	margin-top: 6px;
+}
+.CartPerPage .Bottom {
+	margin-bottom: 6px;
+}
+.CartCaption {
+	background-color: #6DC649;
+	border: 1px solid #459924;
+	border-bottom: 0;
+	color: #E5FFB2;
+	font-size: medium;
+	font-weight: bold;
+	padding: 6px;
+	text-align: left;
+}
+.CartItemsWrapper {
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+.CartItemsWrapper .EmptyCartLabel {
+	background-color: #E5FFB2;
+	border: 1px solid #B8DB74;
+	padding: 6px;
+}
+.CartItems {
+	background-color: #E5FFB2;
+	width: 100%;
+}
+.CartItems td {
+	border: 1px solid #B8DB74;
+	padding: 6px;
+	vertical-align: top;
+}
+.CartItems .RemoveLink {
+	text-align: right;
+}
+.CartItems .RemoveLink a {
+	color: black;
+}
+.CartItems .RemoveLink a:hover {
+	background-color: black;
+	color: #E5FFB2;
+	text-decoration: none;
+}
+.CartItems .ImageCell {
+	border-right: 0;
+	width: 1px;
+}
+.CartItems .InfoCell {
+	border-left: 0;
+	border-right: 0;
+	padding-left: 0;
+	text-align: left;
+}
+.CartItems .ActionCell {
+	border-left: 0;
+	padding-left: 0;
+	text-align: right;
+	width: 1px;
+}
+.CartItems .ProductName {
+	display: inline;
+}
+.CartItems .ProductName a {
+	color: #459924;
+	font-weight: bold;
+}
+.CartItems .ProductName a:hover {
+	background-color: #459924;
+	color: #E5FFB2;
+}
+.CartItems .ItemQuantity {
+	color: #999999;
+	display: inline;
+	margin-left: 6px;
+}
+.CartItems .ProductPrice {
+	/*display: block;*/
+	font-weight: bold;
+}
+
+.ProductPrice {
+	/*display: block;*/
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+/*-----------------------------------------------------------------------------
+ * ProductVariants.
+ */
+.ProductVariants .InStock {
+}
+.ProductVariants .NotInStock {
+	background-color: #efefef;
+}
+.ProductVariants .NotInStock * {
+	color: #999999;
+}
+.QuantityInput {
+	border-color: #999999 #CCCCCC #CCCCCC #999999;
+	border-style: solid;
+	border-width: 1px;
+	/*font-family: monospace;*/
+	/*font-size: medium;*/
+	padding: 2px;
+	margin: 0px;
+	/*text-align: right;*/
+	width: 5em;
+}
+.ProductVariants .AddToCartBlock {
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+/*-----------------------------------------------------------------------------
+ * Messages.
+ */
+.Message.Error {
+	background-color: #FFCCCC;
+	border: 1px solid #FF6666;
+	color: #DD0000;
+	display: block;
+	font-size: small;
+	margin-bottom: 6px;
+	padding: 1em;
+}
+.Message.Error h2 {
+	background-color: #FFCCCC;
+	border: 0;
+	color: #DD0000;
+	font-size: medium;
+	margin: 0;
+	padding: 0;
+}
+.Message.Error a {
+	background-color: #FFCCCC;
+	color: black;
+	font-weight: bold;
+}
+.Message.Error a:hover {
+	background-color: black;
+	color: #FFCCCC;
+}
+
+/*-----------------------------------------------------------------------------
+	Orders.
+*/
+.OrderInfoTable {
+}
+.OrderInfoCell {
+	padding-right: 0.5em;
+	vertical-align: top;
+}
+
+/*-----------------------------------------------------------------------------
+	Forms.
+*/
+.FormActions {
+	border: 1 solid hidden;
+	border-top: 1px solid #bbbbbb;
+	margin-top: 6px;
+	padding-top: 12px;
+	padding-left: 16em; /* = ([.wwlbl.width] * 2 * [.wwlbl.padding]). */
+}
+
+.FormControlPanel {
+	border: 1 solid hidden;
+	border-top: 1px solid #dddddd;
+	margin-top: 0.5em;
+	padding-top: 0.5em;
+}
+
+.FormFieldHint {
+	background-color: #ffffcc; /* #e7f3ff */
+	border: 1px solid #ffdd55;
+	color: #777777;
+	/*font-style: italic;*/
+	margin-top: 0.5em;
+	padding: 0.5em;
+}
+.HasFieldErrors .FormFieldHint {
+	background-color: #ffcccc;
+	border: 0;
+	padding: 0;
+}
+
+/* Forms and Fields. */
+/*----------------------------------------------------------------------------*/
+.FieldGroup {
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+.FieldGroup .Caption {
+	background-color: #eeeeee;
+	border: 0 solid hidden;
+	border-bottom: 1px solid #bbbbbb;
+	color: #444444;
+	padding: 6px;
+}
+.FieldGroup .Label {
+	font-size: medium;
+	font-weight: bold;
+}
+.FieldGroup .FormCopierControls {
+	margin: 0;
+}
+
+/* Drag-n-Drop. */
+/*----------------------------------------------------------------------------*/
+.DndList {
+}
+.DndItem {
+	background-color: #D0E6ED;
+    border: 1px solid #49A9C1;
+    margin-top: 1px;
+}
+.DndItem .Handle {
+	background-color: #A4DAE8;
+	cursor: move;
+	padding: 6px;
+}
+.DndItem .HandleTitle {
+	color: #49A9C1;
+	/*font-size: medium;*/
+	font-weight: bold;
+}
+.DndItem .HandleSummary {
+}
+.DndItem .Content {
+	padding: 6px;
+}
+
+/*-----------------------------------------------------------------------------
+	Main Button.
+*/
+.MainButton {
+	font-size: medium;
+	font-weight: bold;
+}
+
+/*-----------------------------------------------------------------------------
+	FCKEditor.
+*/
+/* Class of textarea input to be replaced by FCKEditor. */
+.HtmlEditorArea {
+	width: 100%;
+	height: 300px;
+}
+.SmallHtmlEditorArea {
+	width: 30em;
+	height: 10em;
+}
+.SummaryTextArea {
+	width: 100%;
+	height: 100px;
+}
+
+/*---------------------------------------------------------------------------*/
+.UrlNameBlock {
+	overflow: visible;
+	white-space: nowrap;
+}
+
+.TitleInCell {
+	margin-bottom: 0.5em;
+	font-weight: bold;
+}

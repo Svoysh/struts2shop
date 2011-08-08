@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!-- ====================== Persistence management. ======================== -->
+	
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>-->
+				<prop key="hibernate.dialect">seamshop.util.MySQL5Dialect</prop>
+				
+				<!-- 
+					If value="create" then Hibernate should run "import.sql" after 
+					a database is created. 
+				-->
+				<!-- TODO: DEVELOPMENT -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- TODO: PRODUCTION -->
+				<!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
+				
+				<!-- 
+					This will replace the keywords true and false with the literals 
+					1 and 0 in the translated SQL from input HQL. 
+				-->
+				<prop key="hibernate.query.substitutions">true=1, false=0</prop>
+	
+				<!-- Logging. -->
+				<!-- TODO: PRODUCTION: Disable logging to speed up app. -->
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				
+				<!--
+					Enables use of JDBC2 batch updates by Hibernate. 
+					Hibernate recommends values between 10 and 50.
+				-->
+				<!--<prop key="hibernate.jdbc.batch_size">20</prop>-->
+				
+				<!-- ===========================================================
+					Hibernate Search (based on Lucene).
+				-->
+				<!-- Default directory provider. -->
+				<prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</prop>
+				<!-- 
+					Default base directory for the indecies.
+					TODO: PRODUCTION: Replace by real path where indexes will be stored.
+				-->
+				<prop key="hibernate.search.default.indexBase">c:/lucene/indexes</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+</beans>

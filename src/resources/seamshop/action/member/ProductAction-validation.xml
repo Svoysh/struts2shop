@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+
+<validators>
+	<field name="shopId">
+		<field-validator type="required">
+			<!-- TODO: i18n -->
+			<message>Select shop to which this product will be added.</message>
+		</field-validator>
+	</field>
+	<field name="product">
+		<field-validator type="visitor">
+			<message key="msgkey.error.visitorError"/>
+		</field-validator>
+	</field>
+	<field name="variants">
+		<field-validator type="visitor">
+			<message key="msgkey.error.visitorError"/>
+		</field-validator>
+	</field>
+	<field name="categories">
+		<field-validator type="visitor">
+			<message key="msgkey.error.visitorError"/>
+		</field-validator>
+	</field>
+</validators>

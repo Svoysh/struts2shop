@@ -1,0 +1,48 @@
+/* 
+	Styles that will be applied only to "member" perspective and can override 
+	"main.css" styles.
+*/
+
+.Header {
+	background-color: #444444;
+}
+.Footer {
+	background-color: #444444;
+}
+a.HomeLink {
+	background-color: #444444;
+}
+a.HomeLink:hover {
+	background-color: #444444;
+}
+
+.CommonMenu li, 
+.AccountMenu li {
+	border-right: 1px solid #444444;
+	border-top: 1px solid #444444;
+}
+
+/*-----------------------------------------------------------------------------
+	Left panel.
+*/
+.LeftPanelItem {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+.LeftPanelLink {
+	border-top: 1px solid #dddddd;
+	display: block;
+	font-size: small;
+	margin: 0;
+	padding: 0.5em;
+	text-decoration: none;
+}
+.LeftPanelLink.First {
+	border-top: 0;
+}
+.LeftPanelLink:hover {
+	background-color: #7cb3e9;
+	color: white;
+	text-decoration: none;
+}

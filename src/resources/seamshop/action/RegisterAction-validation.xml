@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+	"-//OpenSymphony Group//XWork Validator 1.0.3//EN"
+	"http://www.opensymphony.com/xwork/xwork-validator-1.0.3.dtd">
+
+<validators>
+	<!--
+		TODO: Require either "firstName" or "lastName".
+			If both are entered - it's OK too.
+	-->
+	<field name="firstName">
+		<field-validator type="requiredstring">
+			<message key="msgkey.error.firstName.required"/>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">1</param>
+			<param name="maxLength">255</param>
+			<message key="msgkey.error.field.length"/>
+		</field-validator>
+	</field>
+	<field name="lastName">
+		<field-validator type="requiredstring">
+			<message key="msgkey.error.lastName.required"/>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">1</param>
+			<param name="maxLength">255</param>
+			<message key="msgkey.error.field.length"/>
+		</field-validator>
+	</field>
+	<field name="passwordControl">
+		<field-validator type="requiredstring">
+			<message key="msgkey.error.passwordControl.required"/>
+		</field-validator>
+		<field-validator type="stringlength">
+			<param name="minLength">1</param>
+			<param name="maxLength">255</param>
+			<message key="msgkey.error.password.length"/>
+		</field-validator>
+	</field>
+	<field name="passwordControl">
+		<field-validator type="fieldexpression">
+			<param name="expression">password eq passwordControl</param>
+			<message key="msgkey.error.register.passwordsDoNotMatch"/>
+		</field-validator>
+	</field>
+</validators>
