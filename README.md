@@ -1,0 +1,1 @@
+Simple shop system on Struts 2, Hibernate and Spring (Java).
