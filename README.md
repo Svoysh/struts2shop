@@ -1,6 +1,6 @@
 # Struts2 Shop
 
-Simple shop system on Struts 2, Hibernate and Spring (Java).
+Simple shop system on **Struts 2**, **Hibernate** and **Spring** (Java).
 
 ## Author
 
